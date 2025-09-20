@@ -15,9 +15,14 @@ TIE_TESTS: Dict[str, Dict[str, str]] = {}
 app = FastAPI()
 
 # ---------------- CORS ----------------
+origins = [
+    "https://thunderous-sorbet-89caaa.netlify.app",  # your frontend
+    "http://localhost:5173",  # if testing locally
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # frontend
+    allow_origins=origins,  # or ["*"] for all (not recommended for production)
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
